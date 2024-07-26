@@ -32,6 +32,38 @@ addToLib(entry2);
 
 /* Page */
 
-/* LISTENERS */
+/* SELECTORS */
 
 const shelf = document.querySelector("#container");
+
+/* Putting into the shelves */
+
+function bookDiv(info, divClass, obj, parent) {
+    console.log(info);
+    info = document.createElement("div");
+    console.log(info);
+    info.classList.add(divClass);
+    console.log(info.classList);
+    info.textContent = obj;
+    console.log(info.textContent);
+    parent.appendChild(info);
+}
+
+for(let i = 0; i < myLib.length; i++) {
+    console.log("Loop runing");
+    const bookEntry = document.createElement("div");
+    bookEntry.classList.add("card");
+    const bookCover = document.createElement("img");
+    bookCover.src = myLib[i].coverart;
+    bookEntry.appendChild(bookCover);
+    const bookTitle = document.createElement("h2");
+    bookTitle.textContent = myLib[i].title;
+    bookEntry.appendChild(bookTitle);
+    bookDiv("author", "book-author", myLib[i].author, bookEntry);
+    bookDiv("release", "book-release", myLib[i].release, bookEntry);
+    bookDiv("length", "book-length", myLib[i].length, bookEntry);
+    bookDiv("sinopsis", "book-sino", myLib[i].sinopsis, bookEntry);
+    bookDiv("progress", "book-progress", myLib[i].progress, bookEntry);
+    bookDiv("rate", "book-rate", myLib[i].rating, bookEntry);
+    shelf.appendChild(bookEntry)
+}
