@@ -32,3 +32,6 @@ addToLib(entry2);
 
 /* Page */
 
+/* LISTENERS */
+
+const shelf = document.querySelector("#container");
