@@ -59,11 +59,11 @@ for(let i = 0; i < myLib.length; i++) {
     const bookTitle = document.createElement("h2");
     bookTitle.textContent = myLib[i].title;
     bookEntry.appendChild(bookTitle);
-    bookDiv("author", "book-author", myLib[i].author, bookEntry);
-    bookDiv("release", "book-release", myLib[i].release, bookEntry);
-    bookDiv("length", "book-length", myLib[i].length, bookEntry);
-    bookDiv("sinopsis", "book-sino", myLib[i].sinopsis, bookEntry);
-    bookDiv("progress", "book-progress", myLib[i].progress, bookEntry);
-    bookDiv("rate", "book-rate", myLib[i].rating, bookEntry);
+    bookDiv("author", "author", myLib[i].author, bookEntry);
+    bookDiv("release", "release", myLib[i].release, bookEntry);
+    bookDiv("length", "length", myLib[i].length, bookEntry);
+    bookDiv("sinopsis", "sino", myLib[i].sinopsis, bookEntry);
+    bookDiv("progress", "progress", `${myLib[i].progress}%`, bookEntry);
+    bookDiv("rate", "rate", myLib[i].rating, bookEntry);
     shelf.appendChild(bookEntry)
 }
