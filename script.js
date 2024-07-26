@@ -1,3 +1,3 @@
 /* SHELF */
 
-let myLib = [];
+const myLib = [];
