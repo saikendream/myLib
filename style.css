@@ -1,3 +1,60 @@
 * {
     font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 }
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+/* TOPBAR */
+
+#topbar {
+    height: 150px;
+    width: 100%;
+    padding: 25px 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#search-text {
+    width: 170px;
+    transition: width .3s ease-in-out;
+    border-radius: 50px;
+    height: 25px;
+    padding: 5px 20px;
+}
+
+#topbar:hover #search-text {
+    width: 350px;
+    transition: width .3s ease-in-out;
+}
+
+#search-text:focus-visible {
+    width: 350px;
+}
+
+/* BUTTONS */
+
+button,
+input[type=submit] {
+    padding: 10px 15px;
+    border-radius: 50%;
+    opacity: .4;
+    transition: all .3s ease-in-out;
+    background-color: bisque;
+}
+
+button:hover,
+input[type=submit]:hover {
+    opacity: 1;
+    transition: opacity .3s ease-in-out;
+}
+
+button:active,
+input[type=submit]:active {
+    background-color: aqua;
+    transition: background-color .3s ease-in-out;
+}
