@@ -5,6 +5,7 @@ const myLib = [];
 /* Book Info */
 
 function Book(title, author, release, length, sinopsis, coverart, progress, rating) {
+    this.idNum = `lb${new Date().getTime().toString().slice(-5)}`;
     this.title = title;
     this.author = author;
     this.release = release;
@@ -18,7 +19,7 @@ function Book(title, author, release, length, sinopsis, coverart, progress, rati
 /* Testing */
 
 const entry1 = new Book("The Hobbit", "J. R. R. Tolkien", "1937-09-21", 95356, "The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin's Company, on a quest to reclaim the dwarves' home and treasure from the dragon Smaug. Bilbo's journey takes him from his peaceful rural surroundings into more sinister territory.", "https://m.media-amazon.com/images/I/712cDO7d73L._AC_UF1000,1000_QL80_.jpg", 95, 0);
-
+setTimeout(10000);
 const entry2 = new Book("Alice's Adventures in Wonderland", "Lewis Carroll", "1865-11-01", 29610, "It details the story of a girl named Alice who falls through a rabbit hole into a fantasy world of anthropomorphic creatures.", "https://ik.imagekit.io/panmac/tr:f-auto,di-placeholder_portrait_aMjPtD9YZ.jpg,w-270/edition/9781447279990.jpg", 100, 4);
 
 /* Add to Lib */
@@ -51,7 +52,8 @@ function bookDiv(info, divClass, obj, parent) {
 
 for(let i = 0; i < myLib.length; i++) {
     console.log("Loop runing");
-    const bookEntry = document.createElement("div");
+    let bookEntry = document.createElement("div");
+    bookEntry.id = myLib[i].idNum;
     bookEntry.classList.add("card");
     const bookCover = document.createElement("img");
     bookCover.src = myLib[i].coverart;
