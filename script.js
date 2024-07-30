@@ -50,6 +50,28 @@ function bookDiv(info, divClass, obj, parent) {
     parent.appendChild(info);
 }
 
+function cardButtons(parent) {
+    const cardOptions = document.createElement("div");
+    cardOptions.classList.add("buttons")
+
+    const moreInfo = document.createElement("div");
+    moreInfo.classList.add("btn");
+    moreInfo.id = "more-btn";
+    const editInfo = document.createElement("div");
+    editInfo.classList.add("btn");
+    editInfo.id = "edit-btn";
+    const deleteBook = document.createElement("div");
+    deleteBook.classList.add("btn");
+    deleteBook.id = "delete-btn";
+
+    moreInfo.innerHTML = '<i class="fa-solid fa-eye"></i>';
+    editInfo.innerHTML = '<i class="fa-solid fa-pencil"></i>';
+    deleteBook.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+
+    cardOptions.append(deleteBook, editInfo, moreInfo);
+    parent.appendChild(cardOptions);
+}
+
 for(let i = 0; i < myLib.length; i++) {
     console.log("Loop runing");
     let bookEntry = document.createElement("div");
@@ -62,10 +84,8 @@ for(let i = 0; i < myLib.length; i++) {
     bookTitle.textContent = myLib[i].title;
     bookEntry.appendChild(bookTitle);
     bookDiv("author", "author", myLib[i].author, bookEntry);
-    bookDiv("release", "release", myLib[i].release, bookEntry);
-    bookDiv("length", "length", myLib[i].length, bookEntry);
-    bookDiv("sinopsis", "sino", myLib[i].sinopsis, bookEntry);
-    bookDiv("progress", "progress", `${myLib[i].progress}%`, bookEntry);
     bookDiv("rate", "rate", myLib[i].rating, bookEntry);
-    shelf.appendChild(bookEntry)
+    bookDiv("progress", "progress", `${myLib[i].progress}%`, bookEntry);
+    cardButtons(bookEntry);
+    shelf.appendChild(bookEntry);
 }
