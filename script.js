@@ -37,6 +37,20 @@ addToLib(entry3);
 /* SELECTORS */
 
 const shelf = document.querySelector("#container");
+const userInput = document.querySelector("#add-book");
+    const inputForm = document.querySelector("#user-input");
+    const inputClose = document.querySelector("#input-close");
+    const inputDone = document.querySelector("#input-submit");
+
+/* DIALOG CONTROLS */
+
+userInput.addEventListener("click", () => {
+    inputForm.showModal(); // Displays the selected dialog
+});
+
+inputClose.addEventListener("click", () => {
+    inputForm.close(); // Closes respective dialog
+})
 
 /* Putting into the shelves */
 
