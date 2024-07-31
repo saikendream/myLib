@@ -51,7 +51,7 @@ function bookDiv(info, divClass, obj, parent) {
     parent.appendChild(info);
 }
 
-function cardButtons(parent) {
+function cardButtons(progress, parent) {
     const cardOptions = document.createElement("div");
     cardOptions.classList.add("buttons")
 
@@ -69,7 +69,7 @@ function cardButtons(parent) {
     editInfo.innerHTML = '<i class="fa-solid fa-pencil"></i>';
     deleteBook.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
 
-    cardOptions.append(deleteBook, editInfo, moreInfo);
+    cardOptions.append(progress, deleteBook, editInfo, moreInfo);
     parent.appendChild(cardOptions);
 }
 
@@ -89,8 +89,7 @@ for(let i = 0; i < myLib.length; i++) {
     const progress = document.createElement("progress");
     progress.max = 100;
     progress.value = myLib[i].progress;
-    progress.classList.add("progress");
     bookEntry.appendChild(progress);
-    cardButtons(bookEntry);
+    cardButtons(progress, bookEntry);
     shelf.appendChild(bookEntry);
 }
