@@ -67,11 +67,43 @@ input[type=submit]:active {
     transition: background-color .3s ease-in-out;
 }
 
+.btn {
+    padding: 5px 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: solid 2px #aeaeae;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #dbdbdb;
+}
+
+.btn:active {
+    background-color: #aeaeae;
+}
+
+#delete-btn {
+    background-color: #c63434 !important;
+    border: solid 2px #b20606;
+    color: white;
+}
+
+#delete-btn:hover {
+    background-color: #b63030 !important;
+}
+
+#delete-btn:active {
+    background-color: #b20606 !important;
+}
+
 /* DISPLAY */
 
 #container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     gap: 20px;
     width: calc(100% - 30px);
     padding: 15px;
@@ -95,5 +127,21 @@ input[type=submit]:active {
     height: 150px;
     object-fit: cover;
     grid-row-start: 1;
-    grid-row-end: 4;
+    grid-row-end: 5;
+    margin: 20px 20px;
+}
+
+.card h2 {
+    margin: 15px 10px;
+}
+
+.card .author,
+.card .rate,
+.card .progress {
+    margin: 0 10px;
+}
+
+.card .buttons {
+    display: flex;
+    align-items: center;
 }
