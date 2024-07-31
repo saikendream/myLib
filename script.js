@@ -41,13 +41,9 @@ const shelf = document.querySelector("#container");
 /* Putting into the shelves */
 
 function bookDiv(info, divClass, obj, parent) {
-    console.log(info);
     info = document.createElement("div");
-    console.log(info);
     info.classList.add(divClass);
-    console.log(info.classList);
     info.textContent = obj;
-    console.log(info.textContent);
     parent.appendChild(info);
 }
 
@@ -73,8 +69,36 @@ function cardButtons(progress, parent) {
     parent.appendChild(cardOptions);
 }
 
+function cardRating(rate, parent) {
+    let rateMax = 5;
+    
+    const userRate = document.createElement("div");
+    userRate.classList.add("rating");
+
+    const ratingStar = document.createElement("i");
+    ratingStar.className = "fa-solid fa-star";
+
+    for(let i = 1; i <= rate; i++) {
+        let currentLoop = ratingStar.cloneNode(true);
+        userRate.appendChild(currentLoop);
+    };
+
+    if(rate < rateMax) {
+        console.log("Rate is less than max");
+        let rateDiff = (rate - rateMax) * (-1);
+        console.log(rateDiff);
+        ratingStar.className = "fa-regular fa-star";
+
+        for(let j = 1; j <= rateDiff; j++) {
+            let currentLoop = ratingStar.cloneNode(true);
+            userRate.appendChild(currentLoop);
+        }
+    }
+
+    parent.appendChild(userRate);
+}
+
 for(let i = 0; i < myLib.length; i++) {
-    console.log("Loop runing");
     let bookEntry = document.createElement("div");
     bookEntry.id = myLib[i].idNum;
     bookEntry.classList.add("card");
@@ -85,7 +109,7 @@ for(let i = 0; i < myLib.length; i++) {
     bookTitle.textContent = myLib[i].title;
     bookEntry.appendChild(bookTitle);
     bookDiv("author", "author", myLib[i].author, bookEntry);
-    bookDiv("rate", "rate", myLib[i].rating, bookEntry);
+    cardRating(myLib[i].rating, bookEntry);
     const progress = document.createElement("progress");
     progress.max = 100;
     progress.value = myLib[i].progress;
