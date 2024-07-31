@@ -73,7 +73,8 @@ input[type=submit]:active {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    width: 100%;
+    width: calc(100% - 30px);
+    padding: 15px;
 }
 
 /* CARD */
@@ -87,7 +88,6 @@ input[type=submit]:active {
     background: white;
     border: solid 1px #c8c8c8;
     border-radius: 25px;
-    padding: 15px;
 }
 
 .card img {
