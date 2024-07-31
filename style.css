@@ -116,7 +116,7 @@ input[type=submit]:active {
     height: 200px;
     display: grid;
     grid-template-columns: 120px calc(100% - 120px);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: 30% 15% 20% 35%;
     background: white;
     border: solid 1px #c8c8c8;
     border-radius: 25px;
@@ -133,6 +133,9 @@ input[type=submit]:active {
 
 .card h2 {
     margin: 15px 10px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card .author,
@@ -142,6 +145,13 @@ input[type=submit]:active {
 }
 
 .card .buttons {
+    width: 95%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    justify-self: center;
+}
+
+.buttons progress {
+    width: 55%;
 }
