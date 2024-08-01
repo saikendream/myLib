@@ -52,6 +52,18 @@ inputClose.addEventListener("click", () => {
     inputForm.close(); // Closes respective dialog
 })
 
+/* INPUT STYLING */
+
+userInput.addEventListener("input", function(e) {
+    let input = e.target.closest("input");
+
+    if(input.value != '') {
+        input.classList.add("filled");
+    } else {
+        input.classList.remove("filled");
+    }
+});
+
 /* Putting into the shelves */
 
 function bookDiv(info, divClass, obj, parent) {
