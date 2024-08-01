@@ -54,7 +54,7 @@ inputClose.addEventListener("click", () => {
 
 /* INPUT STYLING */
 
-userInput.addEventListener("input", function(e) {
+inputForm.addEventListener("input", function(e) {
     let input = e.target.closest("input");
 
     if(input.value != '') {
