@@ -71,6 +71,38 @@ clear.addEventListener("click", function(e) {
     });
 });
 
+/* Receiving a new book */
+
+    /* Variables */
+    const formURL = document.querySelector("#img-input input");
+        const formCover = document.querySelector("form img");
+
+formURL.addEventListener("input", () => {
+    console.log("Link input is happening")
+    formCover.src = formURL.value;
+});
+
+inputDone.addEventListener("click", () => {
+    console.log("A new book was added!");
+        const formTitle = document.querySelector("#book-title").value;
+        const formRelease = document.querySelector("#book-release").value;
+        const formWords = document.querySelector("#book-length").value;
+        const formProgress = document.querySelector("#book-progress").value;
+        const formSinopsis = "";
+        const formRating = "";
+        const formAuthor = document.querySelector("#book-author").value;
+    
+    let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
+    addToLib(entry);
+    putOnShelf(entry);
+    document.querySelector("#user-input form").reset();
+    inputForm.querySelectorAll("input").forEach(function(elem) {
+        elem.classList.remove("filled")
+    });
+})
+
+
+
 /* Putting into the shelves */
 
 function bookDiv(info, divClass, obj, parent) {
@@ -131,22 +163,26 @@ function cardRating(rate, parent) {
     parent.appendChild(userRate);
 }
 
-for(let i = 0; i < myLib.length; i++) {
+function putOnShelf(el) {
     let bookEntry = document.createElement("div");
-    bookEntry.id = myLib[i].idNum;
+    bookEntry.id = el.idNum;
     bookEntry.classList.add("card");
     const bookCover = document.createElement("img");
-    bookCover.src = myLib[i].coverart;
+    bookCover.src = el.coverart;
     bookEntry.appendChild(bookCover);
     const bookTitle = document.createElement("h2");
-    bookTitle.textContent = myLib[i].title;
+    bookTitle.textContent = el.title;
     bookEntry.appendChild(bookTitle);
-    bookDiv("author", "author", myLib[i].author, bookEntry);
-    cardRating(myLib[i].rating, bookEntry);
+    bookDiv("author", "author", el.author, bookEntry);
+    cardRating(el.rating, bookEntry);
     const progress = document.createElement("progress");
     progress.max = 100;
-    progress.value = myLib[i].progress;
+    progress.value = el.progress;
     bookEntry.appendChild(progress);
     cardButtons(progress, bookEntry);
     shelf.appendChild(bookEntry);
+}
+
+for(let i = 0; i < myLib.length; i++) {
+    putOnShelf(myLib[i]);
 }
