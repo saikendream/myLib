@@ -41,6 +41,7 @@ const userInput = document.querySelector("#add-book");
     const inputForm = document.querySelector("#user-input");
     const inputClose = document.querySelector("#input-close");
     const inputDone = document.querySelector("#input-submit");
+    const clear = document.querySelector("#input-clear")
 
 /* DIALOG CONTROLS */
 
@@ -62,6 +63,12 @@ inputForm.addEventListener("input", function(e) {
     } else {
         input.classList.remove("filled");
     }
+});
+
+clear.addEventListener("click", function(e) {
+    inputForm.querySelectorAll("input").forEach(function(elem) {
+        elem.classList.remove("filled")
+    });
 });
 
 /* Putting into the shelves */
