@@ -67,7 +67,8 @@ input[type=submit]:active {
     transition: background-color .3s ease-in-out;
 }
 
-.btn {
+.btn,
+#input-btns button {
     padding: 5px 10px;
     background-color: #f2f2f2;
     border-radius: 5px;
@@ -76,11 +77,17 @@ input[type=submit]:active {
     transition: all .3s ease-in-out;
 }
 
-.btn:hover {
+#input-btns button {
+    height: 40px;
+}
+
+.btn:hover,
+#input-btns button:hover {
     background-color: #dbdbdb;
 }
 
-.btn:active {
+.btn:active,
+#input-btns button:active {
     background-color: #aeaeae;
 }
 
@@ -98,6 +105,20 @@ input[type=submit]:active {
     background-color: #b20606 !important;
 }
 
+#input-submit {
+    background-color: #34c640 !important;
+    border: solid 2px #06b237 !important;
+    color: white;
+}
+
+#input-submit:hover {
+    background-color: #30b63d !important;
+}
+
+#input-submit:active {
+    background-color: #30b63d !important;
+}
+
 /* INPUT FORM */
 
 dialog {
@@ -105,30 +126,52 @@ dialog {
     border-radius: 25px;
 }
 
+#input-close {
+    margin-left: 850px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 #user-input form {
     display: grid;
     grid-template-columns: 350px 250px 250px;
-    grid-template-rows: repeat(6, 50px);
+    grid-template-rows: repeat(4, 50px) 200px 50px;
     gap: 15px;
 }
 
 #container-title,
-#container-author {
+#container-author,
+#input-btns {
     grid-column-start: 2;
     grid-column-end: 4;
 }
 
 #user-input img {
-    width: 350px;
-    height: 525px;
+    width: 300px;
+    height: 450px;
     object-fit: cover;
+    justify-self: center;
     grid-row-start: 1;
     grid-row-end: 6;
 }
 
-#img-input {
+#img-input,
+#input-btns {
     grid-row-start: 6;
     grid-row-end: 7;
+}
+
+#img-input {
+    display: flex;
+    align-items: center !important;
+}
+
+#img-input input {
+    position: relative;
+    height: 70%;
+    font-size: 16px;
 }
 
 #user-input .input {
@@ -215,6 +258,12 @@ input:-internal-autofill-selected {
     justify-content: center;
     font-size: 18px;
     gap: 8px;
+}
+
+#input-btns {
+    display: flex;
+    justify-content: right;
+    gap: 20px;
 }
 
 /* DISPLAY */
