@@ -112,8 +112,8 @@ dialog {
     gap: 15px;
 }
 
-#book-title,
-#book-author {
+#container-title,
+#container-author {
     grid-column-start: 2;
     grid-column-end: 4;
 }
@@ -144,8 +144,20 @@ dialog {
     background-color: #d6d6d6;
 }
 
-#book-release input {
+#book-release,
+#book-length,
+#book-progress,
+.input span {
     opacity: 0;
+    transition: all .3s ease-in-out;
+}
+
+input {
+    padding: 0 5px;
+}
+
+input:focus-visible {
+    outline: none;
 }
 
 .input input {
@@ -154,13 +166,55 @@ dialog {
     width: 95%;
     margin: 0 5px;
     position: absolute;
+    bottom: 0px;
+}
+
+input[name="book-progress"] {
+    width: 75%;
+}
+
+#book-progress ~ span {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
 }
 
 .input label {
+    transition: all .3s ease-in-out;
     position: absolute;
+    width: 95%;
     font-size: 20px;
     margin: 10px 10px;
     cursor: text;
+}
+
+input:focus + label,
+.filled + label {
+    font-size: 15px;
+    cursor: default;
+    margin-top: 1px;
+}
+
+#book-release:focus,
+#book-length:focus,
+#book-progress:focus,
+#book-progress:focus ~ span,
+.filled ~ span,
+.filled {
+    opacity: 1 !important;
+}
+
+input:autofill,
+input:-internal-autofill-selected {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+#rate-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    gap: 8px;
 }
 
 /* DISPLAY */
