@@ -88,9 +88,11 @@ inputDone.addEventListener("click", () => {
         const formRelease = document.querySelector("#book-release").value;
         const formWords = document.querySelector("#book-length").value;
         const formProgress = document.querySelector("#book-progress").value;
-        const formSinopsis = "";
+        const formSinopsis = document.querySelector("#book-sinopsis").value;
         const formRating = "";
         const formAuthor = document.querySelector("#book-author").value;
+
+        if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
     
     let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
     addToLib(entry);
