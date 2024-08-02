@@ -76,11 +76,38 @@ clear.addEventListener("click", function(e) {
     /* Variables */
     const formURL = document.querySelector("#img-input input");
         const formCover = document.querySelector("form img");
+    const userStars = inputForm.getElementsByClassName("fa-star");
 
 formURL.addEventListener("input", () => {
     console.log("Link input is happening")
     formCover.src = formURL.value;
 });
+
+    /* Star rating */
+
+    function starsReset() {
+        let i = 0;
+        while(i < 5) {
+            if(userStars[i].className === "fa-solid fa-star active") {} else {
+                userStars[i].className = "fa-regular fa-star";
+            };
+            i++
+        }
+    };
+
+    function formStarsHover(n) {
+        starsReset();
+        for(let i = 0; i < n; i++) {
+            userStars[i].className = "fa-solid fa-star"
+        }
+    };
+
+    function formStarsConfirm(n) {
+        starsReset();
+        for(let i = 0; i < n; i++) {
+            userStars[i].className = "fa-solid fa-star active"
+        }
+    };
 
 inputDone.addEventListener("click", () => {
     console.log("A new book was added!");
