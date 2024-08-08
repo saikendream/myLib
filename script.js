@@ -85,14 +85,18 @@ formURL.addEventListener("input", () => {
 
     /* Star rating */
 
+    let inputRate = 0;
+
     function starsReset() {
-        let i = 0;
-        while(i < 5) {
-            if(userStars[i].className === "fa-solid fa-star active") {} else {
-                userStars[i].className = "fa-regular fa-star";
-            };
-            i++
-        }
+        if(inputRate != 0) {} else {
+            let i = 0;
+            while(i < 5) {
+                if(userStars[i].className === "fa-solid fa-star active") {} else {
+                    userStars[i].className = "fa-regular fa-star";
+                };
+                i++
+            }
+        };
     };
 
     function formStarsHover(n) {
@@ -106,7 +110,8 @@ formURL.addEventListener("input", () => {
         starsReset();
         for(let i = 0; i < n; i++) {
             userStars[i].className = "fa-solid fa-star active"
-        }
+        };
+        inputRate = n;
     };
 
 inputDone.addEventListener("click", () => {
@@ -116,7 +121,7 @@ inputDone.addEventListener("click", () => {
         const formWords = document.querySelector("#book-length").value;
         const formProgress = document.querySelector("#book-progress").value;
         const formSinopsis = document.querySelector("#book-sinopsis").value;
-        const formRating = "";
+        const formRating = inputRate;
         const formAuthor = document.querySelector("#book-author").value;
 
         if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
@@ -194,7 +199,7 @@ function cardRating(rate, parent) {
 
 function putOnShelf(el) {
     let bookEntry = document.createElement("div");
-    bookEntry.id = el.idNum;
+    bookEntry.setAttribute("data-id", el.idNum);
     bookEntry.classList.add("card");
     const bookCover = document.createElement("img");
     bookCover.src = el.coverart;
@@ -214,4 +219,18 @@ function putOnShelf(el) {
 
 for(let i = 0; i < myLib.length; i++) {
     putOnShelf(myLib[i]);
+}
+
+/* CARD BUTTONS */
+
+/* DELETE */
+
+function deleteEntry(el) {
+    let shelfEl = document.querySelector(`data-id="${el}"`);
+    shelfEl.remove();
+
+    const elIndex = myLib.findIndex(Object => {
+        return Object.idNum === "el";
+    });
+    myLib.splice(elIndex, 1);
 }
