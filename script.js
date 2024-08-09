@@ -146,19 +146,23 @@ function bookDiv(info, divClass, obj, parent) {
     parent.appendChild(info);
 }
 
-function cardButtons(progress, parent) {
+function cardButtons(progress, parent, thisInd) {
     const cardOptions = document.createElement("div");
-    cardOptions.classList.add("buttons")
+    cardOptions.classList.add("buttons");
 
     const moreInfo = document.createElement("div");
     moreInfo.classList.add("btn");
     moreInfo.id = "more-btn";
+    moreInfo.dataset.index = thisInd;
     const editInfo = document.createElement("div");
     editInfo.classList.add("btn");
     editInfo.id = "edit-btn";
+    editInfo.dataset.index = thisInd;
     const deleteBook = document.createElement("div");
     deleteBook.classList.add("btn");
     deleteBook.id = "delete-btn";
+    deleteBook.dataset.index = thisInd;
+    deleteBook.onclick = function() { deleteEntry(); };
 
     moreInfo.innerHTML = '<i class="fa-solid fa-eye"></i>';
     editInfo.innerHTML = '<i class="fa-solid fa-pencil"></i>';
@@ -213,7 +217,7 @@ function putOnShelf(el) {
     progress.max = 100;
     progress.value = el.progress;
     bookEntry.appendChild(progress);
-    cardButtons(progress, bookEntry);
+    cardButtons(progress, bookEntry, (myLib.length - 1));
     shelf.appendChild(bookEntry);
 }
 
@@ -226,6 +230,10 @@ for(let i = 0; i < myLib.length; i++) {
 /* DELETE */
 
 function deleteEntry(el) {
+    console.log(el);
+    console.log(`This is ${this}`);
+    el = this.target.parentNode.getAttribute("data-id");
+    console.log(el);
     let shelfEl = document.querySelector(`data-id="${el}"`);
     shelfEl.remove();
 
