@@ -232,7 +232,7 @@ for(let i = 0; i < myLib.length; i++) {
 function deleteEntry(el) {
     console.log(el);
     console.log(`This is ${this}`);
-    el = this.target.parentNode.getAttribute("data-id");
+    el = this.target.dataset.index;
     console.log(el);
     let shelfEl = document.querySelector(`data-id="${el}"`);
     shelfEl.remove();
