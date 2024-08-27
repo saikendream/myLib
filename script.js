@@ -128,7 +128,7 @@ inputDone.addEventListener("click", () => {
     
     let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
     addToLib(entry);
-    putOnShelf(entry);
+    bookCard(entry);
     document.querySelector("#user-input form").reset();
     inputForm.querySelectorAll("input").forEach(function(elem) {
         elem.classList.remove("filled")
@@ -201,44 +201,54 @@ function cardRating(rate, parent) {
     parent.appendChild(userRate);
 }
 
-function putOnShelf(el) {
+function bookCard(el) {
     let bookEntry = document.createElement("div");
     bookEntry.setAttribute("data-id", el.idNum);
     bookEntry.classList.add("card");
+
     const bookCover = document.createElement("img");
     bookCover.src = el.coverart;
     bookEntry.appendChild(bookCover);
+
     const bookTitle = document.createElement("h2");
     bookTitle.textContent = el.title;
     bookEntry.appendChild(bookTitle);
+
     bookDiv("author", "author", el.author, bookEntry);
     cardRating(el.rating, bookEntry);
+
     const progress = document.createElement("progress");
     progress.max = 100;
     progress.value = el.progress;
     bookEntry.appendChild(progress);
+
     cardButtons(progress, bookEntry, (myLib.length - 1));
     shelf.appendChild(bookEntry);
+
+    /* CARD BUTTONS */
+
+    /* DELETE */
+
+    this.deleteEntry = function() {
+        console.log(this);
+        console.log(event.target.parentNode.dataset.index);
+        let el = event.target.parentNode.dataset.index;
+
+        const elIndex = myLib.findIndex(Object => {
+            return Object.idNum === "el";
+        });
+        console.log(elIndex);
+        myLib.splice(elIndex, 1);
+
+        putOnShelf();
+    }
 }
 
-for(let i = 0; i < myLib.length; i++) {
-    putOnShelf(myLib[i]);
+function putOnShelf() {
+    shelf.textContent = "";
+    for(let i = 0; i < myLib.length; i++) {
+        bookCard(myLib[i]);
+    }
 }
 
-/* CARD BUTTONS */
-
-/* DELETE */
-
-function deleteEntry(el) {
-    console.log(el);
-    console.log(`This is ${this}`);
-    el = this.target.dataset.index;
-    console.log(el);
-    let shelfEl = document.querySelector(`data-id="${el}"`);
-    shelfEl.remove();
-
-    const elIndex = myLib.findIndex(Object => {
-        return Object.idNum === "el";
-    });
-    myLib.splice(elIndex, 1);
-}
+putOnShelf();
