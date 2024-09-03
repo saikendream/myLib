@@ -153,15 +153,13 @@ function cardButtons(progress, parent, thisInd) {
     const moreInfo = document.createElement("div");
     moreInfo.classList.add("btn");
     moreInfo.id = "more-btn";
-    moreInfo.dataset.index = thisInd;
     const editInfo = document.createElement("div");
     editInfo.classList.add("btn");
     editInfo.id = "edit-btn";
-    editInfo.dataset.index = thisInd;
+    editInfo.onclick = function() { editEntry(); };
     const deleteBook = document.createElement("div");
     deleteBook.classList.add("btn");
     deleteBook.id = "delete-btn";
-    deleteBook.dataset.index = thisInd;
     deleteBook.onclick = function() { deleteEntry(); };
 
     moreInfo.innerHTML = '<i class="fa-solid fa-eye"></i>';
@@ -248,6 +246,27 @@ function bookCard(el) {
 
         putOnShelf();
     }
+
+    /* EDIT */
+
+    this.editEntry = function() {
+        cardIdentifier();
+        const elIndex = myLib.findIndex((Object) => Object.idNum === thisEl);
+
+        document.querySelector("#img-input input").value = myLib[elIndex].coverart;
+            formCover.src = myLib[elIndex].coverart;
+        document.querySelector("#book-title").value = myLib[elIndex].title;
+        document.querySelector("#book-release").value = myLib[elIndex].release;
+        document.querySelector("#book-length").value = myLib[elIndex].length;
+        document.querySelector("#book-progress").value = myLib[elIndex].progress;
+        document.querySelector("#book-sinopsis").value = myLib[elIndex].sinopsis;
+        const formRating = inputRate;
+        document.querySelector("#book-author").value = myLib[elIndex].author;
+
+        inputForm.showModal();
+    }
+
+    /* SEE MORE */
 }
 
 function putOnShelf() {
