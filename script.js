@@ -153,6 +153,7 @@ function cardButtons(progress, parent, thisInd) {
     const moreInfo = document.createElement("div");
     moreInfo.classList.add("btn");
     moreInfo.id = "more-btn";
+    moreInfo.onclick = function() { seeMore(); };
     const editInfo = document.createElement("div");
     editInfo.classList.add("btn");
     editInfo.id = "edit-btn";
@@ -256,17 +257,59 @@ function bookCard(el) {
         document.querySelector("#img-input input").value = myLib[elIndex].coverart;
             formCover.src = myLib[elIndex].coverart;
         document.querySelector("#book-title").value = myLib[elIndex].title;
+            document.querySelector("#book-title").classList.add("filled");
         document.querySelector("#book-release").value = myLib[elIndex].release;
+            document.querySelector("#book-release").classList.add("filled");
         document.querySelector("#book-length").value = myLib[elIndex].length;
+            document.querySelector("#book-length").classList.add("filled");
         document.querySelector("#book-progress").value = myLib[elIndex].progress;
+            document.querySelector("#book-progress").classList.add("filled");
         document.querySelector("#book-sinopsis").value = myLib[elIndex].sinopsis;
         const formRating = inputRate;
         document.querySelector("#book-author").value = myLib[elIndex].author;
+            document.querySelector("#book-author").classList.add("filled");
 
         inputForm.showModal();
+
+        inputForm.onclose = () => {
+            document.querySelector("#user-input form").reset();
+            inputForm.querySelectorAll("input").forEach(function(elem) {
+                elem.classList.remove("filled"); 
+            });
+            formCover.src = "/src/no_cover.png";
+        }; 
     }
 
     /* SEE MORE */
+
+    this.seeMore = function() {
+        cardIdentifier();
+        const elIndex = myLib.findIndex((Object) => Object.idNum === thisEl);
+
+        let bookModal = document.createElement("dialog");
+        bookModal.classList.add("more-info");
+
+        const modalRow1 = document.createElement("div");
+        const modalRow2 = document.createElement("div");
+
+        const bmCover = document.createElement("img");
+        bmCover.src = myLib[elIndex].coverart;
+        modalRow1.appendChild(bmCover);
+
+        const bmTitle = document.createElement("h2");
+        bmTitle.classList.add("book-title");
+        bmTitle.textContent = myLib[elIndex].title;
+        modalRow2.appendChild(bmTitle);
+
+        bookModal.append(modalRow1, modalRow2);
+        shelf.appendChild(bookModal);
+
+        bookModal.showModal();
+
+        inputForm.onclose = () => {
+            bookModal.remove();
+        };
+    };
 }
 
 function putOnShelf() {
