@@ -230,14 +230,13 @@ function bookCard(el) {
     /* DELETE */
 
     this.deleteEntry = function() {
-        console.log(this);
+        console.log(`"this" is ${this}`);
         console.log(event.target.parentNode.dataset.index);
-        let el = event.target.parentNode.dataset.index;
+        let el = event.target.parentNode.parentNode.parentNode.dataset.id;
 
-        const elIndex = myLib.findIndex(Object => {
-            return Object.idNum === "el";
-        });
-        console.log(elIndex);
+        console.log(`"el" is ${el}`);
+        const elIndex = myLib.findIndex((Object) => Object.idNum === el);
+        console.log(`index is ${elIndex}`);
         myLib.splice(elIndex, 1);
 
         putOnShelf();
