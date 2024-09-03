@@ -227,15 +227,22 @@ function bookCard(el) {
 
     /* CARD BUTTONS */
 
+    let thisEl = "";
+
+    function cardIdentifier() {
+        thisEl = event.target.parentNode.parentNode.parentNode.dataset.id;
+        if(thisEl === undefined) {
+            thisEl = event.target.parentNode.parentNode.dataset.id;
+        }
+        console.log(`"thisEl" is ${thisEl}`);
+    }
+
     /* DELETE */
 
     this.deleteEntry = function() {
-        console.log(`"this" is ${this}`);
-        console.log(event.target.parentNode.dataset.index);
-        let el = event.target.parentNode.parentNode.parentNode.dataset.id;
+        cardIdentifier();
 
-        console.log(`"el" is ${el}`);
-        const elIndex = myLib.findIndex((Object) => Object.idNum === el);
+        const elIndex = myLib.findIndex((Object) => Object.idNum === thisEl);
         console.log(`index is ${elIndex}`);
         myLib.splice(elIndex, 1);
 
