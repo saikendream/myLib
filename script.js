@@ -115,21 +115,39 @@ formURL.addEventListener("input", () => {
         inputRate = n;
     };
 
+let isEditing = false;
+    let currentEdit = "";
+
 inputDone.addEventListener("click", () => {
-    console.log("A new book was added!");
-        const formTitle = document.querySelector("#book-title").value;
-        const formRelease = document.querySelector("#book-release").value;
-        const formWords = document.querySelector("#book-length").value;
-        const formProgress = document.querySelector("#book-progress").value;
-        const formSinopsis = document.querySelector("#book-sinopsis").value;
-        const formRating = inputRate;
-        const formAuthor = document.querySelector("#book-author").value;
+    if(isEditing) {
+        currentEdit.title = document.querySelector("#book-title").value;
+        currentEdit.release = document.querySelector("#book-release").value;
+        currentEdit.length = document.querySelector("#book-length").value;
+        currentEdit.progress = document.querySelector("#book-progress").value;
+        currentEdit.sinopsis = document.querySelector("#book-sinopsis").value;
+        currentEdit.rating = inputRate;
+        currentEdit.author = document.querySelector("#book-author").value;
 
         if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
+
+        putOnShelf();
+    } else {
+            console.log("A new book was added!");
+            const formTitle = document.querySelector("#book-title").value;
+            const formRelease = document.querySelector("#book-release").value;
+            const formWords = document.querySelector("#book-length").value;
+            const formProgress = document.querySelector("#book-progress").value;
+            const formSinopsis = document.querySelector("#book-sinopsis").value;
+            const formRating = inputRate;
+            const formAuthor = document.querySelector("#book-author").value;
+
+            if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
     
-    let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
-    addToLib(entry);
-    bookCard(entry);
+        let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
+        addToLib(entry);
+        bookCard(entry);
+    };
+    
     document.querySelector("#user-input form").reset();
     inputForm.querySelectorAll("input").forEach(function(elem) {
         elem.classList.remove("filled")
@@ -271,23 +289,8 @@ function bookCard(el) {
             document.querySelector("#book-author").classList.add("filled");
 
         inputForm.showModal();
-
-        inputForm.onsubmit = () => {
-            if(myLib[elIndex]) {
-                console.log(`${myLib[elIndex].idNum} was modified.`);
-                    myLib[elIndex].title = document.querySelector("#book-title").value;
-                    myLib[elIndex].release = document.querySelector("#book-release").value;
-                    myLib[elIndex].length = document.querySelector("#book-length").value;
-                    myLib[elIndex].progress = document.querySelector("#book-progress").value;
-                    myLib[elIndex].sinopsis = document.querySelector("#book-sinopsis").value;
-                    myLib[elIndex].rating = inputRate;
-                    myLib[elIndex].author = document.querySelector("#book-author").value;
-
-                    if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
-
-                putOnShelf();
-            };
-        };
+        currentEdit = myLib[elIndex];
+        isEditing = true;
 
         inputForm.onclose = () => {
             document.querySelector("#user-input form").reset();
@@ -295,6 +298,7 @@ function bookCard(el) {
                 elem.classList.remove("filled"); 
             });
             formCover.src = "/src/no_cover.png";
+            isEditing = false;
         }; 
     }
 
