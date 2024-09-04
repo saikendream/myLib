@@ -332,7 +332,11 @@ function bookCard(el) {
         bmTitle.textContent = myLib[elIndex].title;
         modalRow2.appendChild(bmTitle);
         bookDiv("author", "book-author", myLib[elIndex].author, modalRow2, "h3");
-        bookDiv("release", "book-release", myLib[elIndex].release, modalRow2);
+            const releaseDay = myLib[elIndex].release.getDate();
+            const releaseMonth = myLib[elIndex].release.toLocaleString("default", { month: "long" });
+            const releaseYear = myLib[elIndex].release.getFullYear();
+            const releaseDate = `${releaseMonth} ${releaseDay}, ${releaseYear}`;
+        bookDiv("release", "book-release", releaseDate, modalRow2);
         bookDiv("length", "book-lenght", myLib[elIndex].length, modalRow2);
         cardRating(myLib[elIndex].rating, modalRow2);
         bookDiv("sinopsis", "book-sinopsis", myLib[elIndex].sinopsis, modalRow2);
