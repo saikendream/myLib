@@ -135,28 +135,66 @@ dialog {
     font-size: 16px;
 }
 
-#user-input form {
+#user-input form,
+.more-info > div {
     display: grid;
     grid-template-columns: 350px 250px 250px;
-    grid-template-rows: repeat(4, 50px) 200px 50px;
     gap: 15px;
+}
+
+.more-info > div {
+    grid-template-rows: repeat(3, 35px) 200px 35px;
+}
+
+#user-input form {
+    grid-template-rows: repeat(4, 50px) 200px 50px;
 }
 
 #container-title,
 #container-author,
 #container-sinopsis,
-#input-btns {
+#input-btns,
+.more-info .book-title,
+.more-info .book-sinopsis,
+.more-info progress {
     grid-column-start: 2;
     grid-column-end: 4;
+}
+
+
+.more-info .book-author,
+.more-info .book-length {
+    grid-column-start: 2;
+    grid-column-end: 3 !important;
+    align-self: center;
+}
+
+.more-info .book-release,
+.more-info .rating {
+    grid-column-start: 3 !important;
+    grid-column-end: 4;
+    align-self: center;
+}
+
+.more-info .book-title,
+.more-info .book-author,
+.more-info .book-sinopsis,
+.more-info progress {
+    position: relative;
+    width: 100%;
+}
+
+#user-input img,
+.more-info img {
+    object-fit: cover;
+    justify-self: center;
+    grid-row-start: 1;
+    grid-row-end: 6;
 }
 
 #user-input img {
     width: 300px;
     height: 450px;
-    object-fit: cover;
-    justify-self: center;
-    grid-row-start: 1;
-    grid-row-end: 6;
 }
 
 #img-input,
@@ -375,4 +413,39 @@ progress::-webkit-progress-value {
 
 .card .rating .fa-solid {
     color: aqua;
+}
+
+/* MORE INFO */
+
+.more-info > div div {
+    display: grid;
+}
+
+.more-info img {
+    width: 265px;
+    height: 400px;
+    justify-self: center;
+}
+
+.more-info h2 {
+    margin-top: 0;
+}
+
+.more-info .rating {
+    color: #c8c8c8;
+    font-size: 24px;
+    display: flex;
+    gap: 5px;
+}
+
+.more-info .rating .fa-solid {
+    color: #dfa400;
+}
+
+.more-info progress {
+    align-self: center;
+}
+
+.more-info .book-sinopsis {
+    overflow: scroll;
 }
