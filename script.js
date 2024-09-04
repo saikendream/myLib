@@ -272,6 +272,23 @@ function bookCard(el) {
 
         inputForm.showModal();
 
+        inputForm.onsubmit = () => {
+            if(myLib[elIndex]) {
+                console.log(`${myLib[elIndex].idNum} was modified.`);
+                    myLib[elIndex].title = document.querySelector("#book-title").value;
+                    myLib[elIndex].release = document.querySelector("#book-release").value;
+                    myLib[elIndex].length = document.querySelector("#book-length").value;
+                    myLib[elIndex].progress = document.querySelector("#book-progress").value;
+                    myLib[elIndex].sinopsis = document.querySelector("#book-sinopsis").value;
+                    myLib[elIndex].rating = inputRate;
+                    myLib[elIndex].author = document.querySelector("#book-author").value;
+
+                    if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
+
+                putOnShelf();
+            };
+        };
+
         inputForm.onclose = () => {
             document.querySelector("#user-input form").reset();
             inputForm.querySelectorAll("input").forEach(function(elem) {
