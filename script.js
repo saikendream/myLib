@@ -394,3 +394,25 @@ addToLib(entry2);
 addToLib(entry3);
 
 putOnShelf();
+
+/*
+
+function librarian() {
+    let noBook = "";
+
+    if(shelf.textContent == "") {
+        noBook = document.createElement("div");
+        noBook.id = "empty-shelf";
+        noBook.innerHTML = "<p>There's nothing to see here.</p><p>Tap <span><i class='fa-solid fa-plus'></i></span> and add a book!"
+
+        shelf.appendChild(noBook);
+    } else {
+        document.getElementById("empty-shelf").remove();
+    }
+}
+
+const observer = new MutationObserver(librarian);
+const observerRules = { attributes: true, childList: true, subtree: true };
+observer.observe(shelf, observerRules);
+
+*/
