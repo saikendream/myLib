@@ -42,7 +42,7 @@ const userInput = document.querySelector("#add-book");
     const inputForm = document.querySelector("#user-input");
     const inputClose = document.querySelector("#input-close");
     const inputDone = document.querySelector("#input-submit");
-    const clear = document.querySelector("#input-clear")
+    const clear = document.querySelector("#input-clear");
 
 /* DIALOG CONTROLS */
 
@@ -63,7 +63,7 @@ inputForm.addEventListener("input", function(e) {
         input.classList.add("filled");
     } else {
         input.classList.remove("filled");
-    }
+    };
 });
 
 clear.addEventListener("click", function(e) {
@@ -96,7 +96,7 @@ formURL.addEventListener("input", () => {
                     userStars[i].className = "fa-regular fa-star";
                 };
                 i++
-            }
+            };
         };
     };
 
@@ -119,34 +119,36 @@ let isEditing = false;
     let currentEdit = "";
 
 inputDone.addEventListener("click", () => {
-    if(isEditing) {
-        currentEdit.title = document.querySelector("#book-title").value;
-        currentEdit.release = document.querySelector("#book-release").value;
-        currentEdit.length = document.querySelector("#book-length").value;
-        currentEdit.progress = document.querySelector("#book-progress").value;
-        currentEdit.sinopsis = document.querySelector("#book-sinopsis").value;
-        currentEdit.rating = inputRate;
-        currentEdit.author = document.querySelector("#book-author").value;
-
-        if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
-
-        putOnShelf();
-    } else {
-            console.log("A new book was added!");
-            const formTitle = document.querySelector("#book-title").value;
-            const formRelease = document.querySelector("#book-release").valueAsDate;
-            const formWords = document.querySelector("#book-length").value;
-            const formProgress = document.querySelector("#book-progress").value;
-            const formSinopsis = document.querySelector("#book-sinopsis").value;
-            const formRating = inputRate;
-            const formAuthor = document.querySelector("#book-author").value;
+    if(document.querySelector("#user-input form").checkValidity()) {
+        if(isEditing) {
+            currentEdit.title = document.querySelector("#book-title").value;
+            currentEdit.release = document.querySelector("#book-release").value;
+            currentEdit.length = document.querySelector("#book-length").value;
+            currentEdit.progress = document.querySelector("#book-progress").value;
+            currentEdit.sinopsis = document.querySelector("#book-sinopsis").value;
+            currentEdit.rating = inputRate;
+            currentEdit.author = document.querySelector("#book-author").value;
 
             if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
-    
-        let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
-        addToLib(entry);
-        bookCard(entry);
-    };
+
+            putOnShelf();
+        } else {
+                console.log("A new book was added!");
+                const formTitle = document.querySelector("#book-title").value;
+                const formRelease = document.querySelector("#book-release").valueAsDate;
+                const formWords = document.querySelector("#book-length").value;
+                const formProgress = document.querySelector("#book-progress").value;
+                const formSinopsis = document.querySelector("#book-sinopsis").value;
+                const formRating = inputRate;
+                const formAuthor = document.querySelector("#book-author").value;
+
+                if(formURL.value == "") { formURL.value = "/src/no_cover.png" };
+        
+            let entry = new Book(formTitle, formAuthor, formRelease, formWords, formSinopsis, formURL.value, formProgress, formRating);
+            addToLib(entry);
+            bookCard(entry);
+            inputForm.close();
+        };}
     
     document.querySelector("#user-input form").reset();
     inputForm.querySelectorAll("input").forEach(function(elem) {
