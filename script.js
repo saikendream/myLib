@@ -289,6 +289,15 @@ function bookCard(el) {
         let bookModal = document.createElement("dialog");
         bookModal.classList.add("more-info");
 
+        const modalClose = document.createElement("button");
+        modalClose.id = "bmodal-close";
+        modalClose.innerHTML = '<i class="fa-solid fa-x"></i>';
+        modalClose.onclick = () => {
+            bookModal.close();
+        };
+        bookModal.appendChild(modalClose);
+
+        const modalGrid = document.createElement("div");
         const modalRow1 = document.createElement("div");
         const modalRow2 = document.createElement("div");
 
@@ -301,7 +310,8 @@ function bookCard(el) {
         bmTitle.textContent = myLib[elIndex].title;
         modalRow2.appendChild(bmTitle);
 
-        bookModal.append(modalRow1, modalRow2);
+        modalGrid.append(modalRow1, modalRow2);
+        bookModal.appendChild(modalGrid);
         shelf.appendChild(bookModal);
 
         bookModal.showModal();
