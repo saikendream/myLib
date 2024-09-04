@@ -126,7 +126,8 @@ dialog {
     border-radius: 25px;
 }
 
-#input-close {
+#input-close,
+#bmodal-close {
     margin-left: 850px;
     background-color: rgba(0, 0, 0, 0);
     border: none;
