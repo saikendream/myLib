@@ -323,7 +323,7 @@ function bookCard(el) {
 
         const modalGrid = document.createElement("div");
         const modalRow1 = document.createElement("div");
-        const modalRow2 = document.createElement("div");
+        modalGrid.appendChild(modalRow1);
 
         const bmCover = document.createElement("img");
         bmCover.src = myLib[elIndex].coverart;
@@ -332,30 +332,29 @@ function bookCard(el) {
         const bmTitle = document.createElement("h2");
         bmTitle.classList.add("book-title");
         bmTitle.textContent = myLib[elIndex].title;
-        modalRow2.appendChild(bmTitle);
-        bookDiv("author", "book-author", myLib[elIndex].author, modalRow2, "h3");
+        modalGrid.appendChild(bmTitle);
+        bookDiv("author", "book-author", myLib[elIndex].author, modalGrid, "h3");
             const releaseDay = myLib[elIndex].release.getDate();
             const releaseMonth = myLib[elIndex].release.toLocaleString("default", { month: "long" });
             const releaseYear = myLib[elIndex].release.getFullYear();
             const releaseDate = `${releaseMonth} ${releaseDay}, ${releaseYear}`;
-        bookDiv("release", "book-release", releaseDate, modalRow2);
-        bookDiv("length", "book-lenght", `${myLib[elIndex].length} words`, modalRow2);
-        cardRating(myLib[elIndex].rating, modalRow2);
-        bookDiv("sinopsis", "book-sinopsis", myLib[elIndex].sinopsis, modalRow2);
+        bookDiv("release", "book-release", releaseDate, modalGrid);
+        bookDiv("length", "book-length", `${myLib[elIndex].length} words`, modalGrid);
+        cardRating(myLib[elIndex].rating, modalGrid);
+        bookDiv("sinopsis", "book-sinopsis", myLib[elIndex].sinopsis, modalGrid);
 
         const progress = document.createElement("progress");
         progress.max = 100;
         progress.value = myLib[elIndex].progress;
         progress.classList.add("book-progress");
-        modalRow2.appendChild(progress);
+        modalGrid.appendChild(progress);
 
-        modalGrid.append(modalRow1, modalRow2);
         bookModal.appendChild(modalGrid);
         shelf.appendChild(bookModal);
 
         bookModal.showModal();
 
-        inputForm.onclose = () => {
+        bookModal.onclose = () => {
             bookModal.remove();
         };
     };
