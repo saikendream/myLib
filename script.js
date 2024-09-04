@@ -339,8 +339,8 @@ function bookCard(el) {
             const releaseYear = myLib[elIndex].release.getFullYear();
             const releaseDate = `${releaseMonth} ${releaseDay}, ${releaseYear}`;
         bookDiv("release", "book-release", releaseDate, modalRow2);
-        cardRating(myLib[elIndex].rating, modalRow2);
         bookDiv("length", "book-lenght", `${myLib[elIndex].length} words`, modalRow2);
+        cardRating(myLib[elIndex].rating, modalRow2);
         bookDiv("sinopsis", "book-sinopsis", myLib[elIndex].sinopsis, modalRow2);
 
         const progress = document.createElement("progress");
