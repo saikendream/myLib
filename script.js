@@ -18,13 +18,13 @@ function Book(title, author, release, length, sinopsis, coverart, progress, rati
 
 /* Testing */
 
-const entry1 = new Book("The Hobbit", "J. R. R. Tolkien", "1937-09-21", 95356, "The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin's Company, on a quest to reclaim the dwarves' home and treasure from the dragon Smaug. Bilbo's journey takes him from his peaceful rural surroundings into more sinister territory.", "https://m.media-amazon.com/images/I/712cDO7d73L._AC_UF1000,1000_QL80_.jpg", 15, 0);
+const entry1 = new Book("The Hobbit", "J. R. R. Tolkien", new Date("1937-09-21"), 95356, "The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin's Company, on a quest to reclaim the dwarves' home and treasure from the dragon Smaug. Bilbo's journey takes him from his peaceful rural surroundings into more sinister territory.", "https://m.media-amazon.com/images/I/712cDO7d73L._AC_UF1000,1000_QL80_.jpg", 15, 0);
 entry1.idNum = "entry1";
 
-const entry2 = new Book("Alice's Adventures in Wonderland", "Lewis Carroll", "1865-11-01", 29610, "It details the story of a girl named Alice who falls through a rabbit hole into a fantasy world of anthropomorphic creatures.", "https://ik.imagekit.io/panmac/tr:f-auto,di-placeholder_portrait_aMjPtD9YZ.jpg,w-270/edition/9781447279990.jpg", 65, 4);
+const entry2 = new Book("Alice's Adventures in Wonderland", "Lewis Carroll", new Date("1865-11-01"), 29610, "It details the story of a girl named Alice who falls through a rabbit hole into a fantasy world of anthropomorphic creatures.", "https://ik.imagekit.io/panmac/tr:f-auto,di-placeholder_portrait_aMjPtD9YZ.jpg,w-270/edition/9781447279990.jpg", 65, 4);
 entry2.idNum = "entry2";
 
-const entry3 = new Book("Anne of Green Gables", "L. M. Montgomery", "1908-06-13", 106294, "Set in the late 19th century, the novel recounts the adventures of an 11-year-old orphan girl Anne Shirley sent by mistake to two middle-aged siblings, Matthew and Marilla Cuthbert, who had originally intended to adopt a boy to help them on their farm in the fictional town of Avonlea in Prince Edward Island, Canada.", "https://m.media-amazon.com/images/I/81NDwdjGwSL._AC_UF1000,1000_QL80_.jpg", 100, 5);
+const entry3 = new Book("Anne of Green Gables", "L. M. Montgomery", new Date("1908-06-13"), 106294, "Set in the late 19th century, the novel recounts the adventures of an 11-year-old orphan girl Anne Shirley sent by mistake to two middle-aged siblings, Matthew and Marilla Cuthbert, who had originally intended to adopt a boy to help them on their farm in the fictional town of Avonlea in Prince Edward Island, Canada.", "https://m.media-amazon.com/images/I/81NDwdjGwSL._AC_UF1000,1000_QL80_.jpg", 100, 5);
 entry3.idNum = "entry3";
 
 /* Add to Lib */
@@ -134,7 +134,7 @@ inputDone.addEventListener("click", () => {
     } else {
             console.log("A new book was added!");
             const formTitle = document.querySelector("#book-title").value;
-            const formRelease = document.querySelector("#book-release").value;
+            const formRelease = document.querySelector("#book-release").valueAsDate;
             const formWords = document.querySelector("#book-length").value;
             const formProgress = document.querySelector("#book-progress").value;
             const formSinopsis = document.querySelector("#book-sinopsis").value;
@@ -152,14 +152,14 @@ inputDone.addEventListener("click", () => {
     inputForm.querySelectorAll("input").forEach(function(elem) {
         elem.classList.remove("filled")
     });
-})
-
-
+});
 
 /* Putting into the shelves */
 
-function bookDiv(info, divClass, obj, parent) {
-    info = document.createElement("div");
+function bookDiv(info, divClass, obj, parent, bookElem) {
+    if(bookElem == undefined) {
+        info = document.createElement("div");
+    } else { info = document.createElement(bookElem); };
     info.classList.add(divClass);
     info.textContent = obj;
     parent.appendChild(info);
@@ -331,6 +331,17 @@ function bookCard(el) {
         bmTitle.classList.add("book-title");
         bmTitle.textContent = myLib[elIndex].title;
         modalRow2.appendChild(bmTitle);
+        bookDiv("author", "book-author", myLib[elIndex].author, modalRow2, "h3");
+        bookDiv("release", "book-release", myLib[elIndex].release, modalRow2);
+        bookDiv("length", "book-lenght", myLib[elIndex].length, modalRow2);
+        cardRating(myLib[elIndex].rating, modalRow2);
+        bookDiv("sinopsis", "book-sinopsis", myLib[elIndex].sinopsis, modalRow2);
+
+        const progress = document.createElement("progress");
+        progress.max = 100;
+        progress.value = myLib[elIndex].progress;
+        progress.classList.add("book-progress");
+        modalRow2.appendChild(progress);
 
         modalGrid.append(modalRow1, modalRow2);
         bookModal.appendChild(modalGrid);
