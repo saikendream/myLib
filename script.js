@@ -369,8 +369,6 @@ addToLib(entry2);
 addToLib(entry3);
 */
 
-putOnShelf();
-
 function librarian() {
     let noBook = "";
 
@@ -388,3 +386,6 @@ function librarian() {
 const observer = new MutationObserver(librarian);
 const observerRules = { attributes: true, childList: true, subtree: true };
 observer.observe(shelf, observerRules);
+
+
+putOnShelf();
