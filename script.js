@@ -395,8 +395,6 @@ addToLib(entry3);
 
 putOnShelf();
 
-/*
-
 function librarian() {
     let noBook = "";
 
@@ -405,7 +403,7 @@ function librarian() {
         noBook.id = "empty-shelf";
         noBook.innerHTML = "<p>There's nothing to see here.</p><p>Tap <span><i class='fa-solid fa-plus'></i></span> and add a book!"
 
-        shelf.appendChild(noBook);
+        document.body.appendChild(noBook);
     } else {
         document.getElementById("empty-shelf").remove();
     }
@@ -414,5 +412,3 @@ function librarian() {
 const observer = new MutationObserver(librarian);
 const observerRules = { attributes: true, childList: true, subtree: true };
 observer.observe(shelf, observerRules);
-
-*/
