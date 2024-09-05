@@ -52,7 +52,8 @@ input[type=submit] {
     border-radius: 50%;
     opacity: .4;
     transition: all .3s ease-in-out;
-    background-color: bisque;
+    background-color: #f2f2f2;
+    border-style: solid;
 }
 
 button:hover,
@@ -412,7 +413,7 @@ progress::-webkit-progress-value {
 }
 
 .card .rating .fa-solid {
-    color: aqua;
+    color: #dfa400;
 }
 
 /* MORE INFO */
@@ -448,4 +449,24 @@ progress::-webkit-progress-value {
 
 .more-info .book-sinopsis {
     overflow: scroll;
+}
+
+/* EMPTY SHELF */
+
+#empty-shelf {
+    text-align: center;
+    opacity: .5;
+    transition: opacity .2s ease-in-out;
+}
+
+#empty-shelf:hover {
+    opacity: 1;
+}
+
+#empty-shelf span {
+    padding: 5px 9px;
+    border: solid 2px #aeaeae;
+    color: #aeaeae;
+    border-radius: 50%;
+    margin: 0 8px;
 }
