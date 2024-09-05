@@ -16,7 +16,7 @@ function Book(title, author, release, length, sinopsis, coverart, progress, rati
     this.rating = rating;
 }
 
-/* Testing */
+/* Testing
 
 const entry1 = new Book("The Hobbit", "J. R. R. Tolkien", new Date("1937-09-21"), 95356, "The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin's Company, on a quest to reclaim the dwarves' home and treasure from the dragon Smaug. Bilbo's journey takes him from his peaceful rural surroundings into more sinister territory.", "https://m.media-amazon.com/images/I/712cDO7d73L._AC_UF1000,1000_QL80_.jpg", 15, 0);
 entry1.idNum = "entry1";
@@ -26,6 +26,8 @@ entry2.idNum = "entry2";
 
 const entry3 = new Book("Anne of Green Gables", "L. M. Montgomery", new Date("1908-06-13"), 106294, "Set in the late 19th century, the novel recounts the adventures of an 11-year-old orphan girl Anne Shirley sent by mistake to two middle-aged siblings, Matthew and Marilla Cuthbert, who had originally intended to adopt a boy to help them on their farm in the fictional town of Avonlea in Prince Edward Island, Canada.", "https://m.media-amazon.com/images/I/81NDwdjGwSL._AC_UF1000,1000_QL80_.jpg", 100, 5);
 entry3.idNum = "entry3";
+
+*/
 
 /* Add to Lib */
 
@@ -80,7 +82,6 @@ clear.addEventListener("click", function(e) {
     const userStars = inputForm.getElementsByClassName("fa-star");
 
 formURL.addEventListener("input", () => {
-    console.log("Link input is happening")
     formCover.src = formURL.value;
 });
 
@@ -133,7 +134,6 @@ inputDone.addEventListener("click", () => {
 
             putOnShelf();
         } else {
-                console.log("A new book was added!");
                 const formTitle = document.querySelector("#book-title").value;
                 const formRelease = document.querySelector("#book-release").valueAsDate;
                 const formWords = document.querySelector("#book-length").value;
@@ -207,9 +207,7 @@ function cardRating(rate, parent) {
     };
 
     if(rate < rateMax) {
-        console.log("Rate is less than max");
         let rateDiff = (rate - rateMax) * (-1);
-        console.log(rateDiff);
         ratingStar.className = "fa-regular fa-star";
 
         for(let j = 1; j <= rateDiff; j++) {
@@ -253,9 +251,8 @@ function bookCard(el) {
         thisEl = event.target.parentNode.parentNode.parentNode.dataset.id;
         if(thisEl === undefined) {
             thisEl = event.target.parentNode.parentNode.dataset.id;
-        }
-        console.log(`"thisEl" is ${thisEl}`);
-    }
+        };
+    };
 
     /* DELETE */
 
@@ -263,7 +260,6 @@ function bookCard(el) {
         cardIdentifier();
 
         const elIndex = myLib.findIndex((Object) => Object.idNum === thisEl);
-        console.log(`index is ${elIndex}`);
         myLib.splice(elIndex, 1);
 
         putOnShelf();
@@ -365,33 +361,13 @@ function putOnShelf() {
     for(let i = 0; i < myLib.length; i++) {
         bookCard(myLib[i]);
     }
-}
+};
 
 /*
-function addSamples() {
-    console.log("addSamples rodando");
-    let index = 0;
-
-    for(i = 0; i < 4; i++) {
-        console.log(i);
-        if(i == 3) {
-            console.log("i = 4");
-            putOnShelf()
-        } else {
-        if(i == 0) index = entry1;
-        if(i == 1) index = entry2;
-        if(i == 2) index = entry3;
-
-        setTimeout(addToLib(index), 1000);}
-    }
-}
-
-addSamples();
-*/
-
 addToLib(entry1);
 addToLib(entry2);
 addToLib(entry3);
+*/
 
 putOnShelf();
 
