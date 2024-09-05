@@ -17,6 +17,7 @@ This is a practice project, so I'm not actually looking for contribution — but
 1. Improve the design;
 2. Simplify the code;
 3. Add more interactions;
+4. Code the searchbar;
 
 ## Status
 
